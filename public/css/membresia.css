@@ -281,13 +281,13 @@
     margin: 10px 0;
 }
 
-.price {
+.pricePlan {
     font-size: 36px;
     font-weight: 800;
     color: #0274be;
 }
 
-.price b {
+.pricePlan b {
     color: #747b82;
 }
 

@@ -105,6 +105,7 @@
     z-index: 1;
     border-radius: 10px;
     cursor: pointer;
+    margin: 0;
 }
 
 .buttonM:before {
@@ -200,7 +201,7 @@ button:focus:before {
 
 .cardsCarousel h2 {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin: 10px 0;
 }
 
@@ -250,8 +251,9 @@ button:focus:before {
 }
 
 .price {
+    font-weight: 700;
     font-size: 1.2em;
-    color: #2f3f50;
+    color: #275d90;
 }
 
 .students {
