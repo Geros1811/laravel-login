@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {{-- <link rel="stylesheet" href="{{ asset('css/contacto.css') }}"> --}}
 
+<x-auth-session-status class="mb-4" :status="session('status')" />
 
 @extends('layouts.loginPlantilla')
 
@@ -24,23 +25,27 @@
                 <div class="formularioContenido">
                     <h2>Iniciar sesión</h2>
 
-                    <form class="FormCrear">
+                    <form class="FormCrear" method="POST" action="{{ route('login') }}">
+                        @csrf
+                            {{-- <form class="FormCrear"> --}}
+                        
+                            <label for="email" :value="__('Email')">
+                                <i class='bx bx-envelope'></i>
+                                <input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Correo electrónico">
+                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                            </label>
 
-                        <label>
-                            <i class='bx bx-envelope'></i>
-                            <input type="email" placeholder="Correo electrónico">
-                        </label>
-
-                        <label>
-                            <!-- Contraseña normal  -->
-                            <i class='bx bx-lock-alt'></i>
-                            <!-- para  que se muestre la contraseña -->
-                            <!-- <i class='bx bx-lock-open-alt' ></i> -->
-                            <input type="password" placeholder="Contraseña">
-                        </label>
-                        <a href="home">
-                            <input value="Iniciar sesión" type="submit" />
-                        </a>
+                            <label for="password" :value="__('Password')" >
+                                <i class='bx bx-lock-alt'></i>
+                                <input id="password" type="password" 
+                                    name="password"
+                                    required autocomplete="current-password" 
+                                    placeholder="Contraseña">
+                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            </label>
+                            <a href="home">
+                                <input value="Iniciar sesión" type="submit" />
+                            </a>
 
                     </form>
                 </div>
@@ -59,32 +64,42 @@
                 <div class="formularioContenido">
                     <h2>Crear una cuenta</h2>
 
-                    <form class="FormCrear">
+                    <form class="FormCrear"method="POST" action="{{ route('register') }}">
+                        @csrf
                         <div class="nombreApellidos">
-                            <label>
+                            <label for="name" :value="__('Name')">
                                 <i class='bx bx-user-pin'></i>
-                                <input type="text" placeholder="Nombre">
+                                <input id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Nombre">
+                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </label>
-                            <label>
+                            {{-- <label>
                                 <i class='bx bx-user-pin'></i>
                                 <input type="text" placeholder="Apellido Paterno">
                             </label>
                             <label>
                                 <i class='bx bx-user-pin'></i>
                                 <input type="text" placeholder="Apellido Materno">
-                            </label>
-
-                            <label>
+                            </label> --}}
+                            <label for="email" :value="__('Email')" >
                                 <i class='bx bx-envelope'></i>
-                                <input type="email" placeholder="Correo electrónico">
+                                <input id="email" type="email" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="Correo electrónico">
+                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </label>
-
-                            <label>
-                                <!-- Contraseña normal  -->
+                            <label for="password" :value="__('Password')" >
                                 <i class='bx bx-lock-alt'></i>
-                                <!-- para  que se muestre la contraseña -->
-                                <!-- <i class='bx bx-lock-open-alt' ></i> -->
-                                <input type="password" placeholder="Contraseña">
+                                <input id="password" 
+                                type="password"
+                                name="password"
+                                required autocomplete="new-password" placeholder="Contraseña">
+                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            </label>
+                            <label for="password_confirmation" :value="__('Confirm Password')" >
+                                <i class='bx bx-lock-alt'></i>
+                                <input id="password_confirmation"
+                                type="password" 
+                                name="password_confirmation" required autocomplete="new-password" 
+                                placeholder="Confirmar Contraseña">
+                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </label>
                         </div>
 
