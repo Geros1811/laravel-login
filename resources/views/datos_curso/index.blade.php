@@ -116,7 +116,6 @@
     }
 
     </style>
-<<<<<<< Updated upstream
 </head>
 <body>
     <h1>Listado de Cursos</h1>
@@ -152,7 +151,6 @@
 </body>
 </html>
 
-=======
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @extends('layouts.tienda')
 
@@ -232,4 +230,3 @@
         });
     </script>
 @endsection
->>>>>>> Stashed changes
