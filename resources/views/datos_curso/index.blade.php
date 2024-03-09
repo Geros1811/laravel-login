@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +6,9 @@
     <title>Listado de Cursos</title>
     <style>
         body {
-=======
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <style>
         /* body {
->>>>>>> Stashed changes
             font-family: Arial, sans-serif;
         }
         .curso-card {
