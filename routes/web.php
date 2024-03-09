@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DatosCursoController;
+use App\Http\Controllers\CarritoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,11 +35,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/obtener-cursos', [DatosCursoController::class, 'obtenerCursos']);
-Route::get('/carrito', 'DatosCursoController@verCarrito')->name('carrito');
-Route::get('/eliminar_del_carrito/{id}', [DatosCursoController::class, 'eliminarDelCarrito']);
-Route::get('/agregar_al_carrito', [DatosCursoController::class, 'verCarrito']);
-Route::get('/agregar_al_carrito/{id}', [DatosCursoController::class, 'agregarAlCarrito']);
 
+Route::post('/add-to-cart', [CarritoController::class, 'addToCart'])->name('add.to.cart');
+Route::post('/remove-from-cart', [CarritoController::class, 'removeFromCart'])->name('remove.from.cart');
 
 
 Route::middleware('auth')->group(function () {
