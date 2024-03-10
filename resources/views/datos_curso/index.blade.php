@@ -1,19 +1,6 @@
-<<<<<<< Updated upstream
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Cursos</title>
-    <style>
-        body {
-=======
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <style>
-        /* body {
->>>>>>> Stashed changes
-            font-family: Arial, sans-serif;
-        }
+       
         .curso-card {
             border: 1px solid #ddd;
             border-radius: 10px;
@@ -116,44 +103,8 @@
     }
 
     </style>
-<<<<<<< Updated upstream
-</head>
-<body>
-    <h1>Listado de Cursos</h1>
-    <a href="#" class="btn">Carrito</a>
-
-<!-- Muestra el carrito -->
-@if (!empty($carrito))
-    <h2>Carrito</h2>
-    @foreach($carrito as $curso)
-        <div class="curso-card">
-            <img src="data:image/jpeg;base64,{{ base64_encode($curso->ImgC) }}" alt="Imagen del curso">
-            <h3>{{ $curso->Curso }}</h3>
-            <p>Precio: ${{ $curso->categoria }}</p>
-        </div>
-    @endforeach
-@else
-    <p>El carrito está vacío.</p>
-@endif
-
-<!-- Muestra los cursos -->
-@foreach($datos_curso as $curso)
-    <div class="curso-card">
-        <img src="data:image/jpeg;base64,{{ base64_encode($curso->ImgC) }}" alt="Imagen del curso">
-        <h2>{{ $curso->Curso }}</h2>
-        <p>Duración: {{ $curso->Duracion }}</p>
-        <p>Capacitador: {{ $curso->apep_cap }} {{ $curso->apem_cap }}</p>
-        <p>Precio ${{ $curso->categoria }}</p>
-        <a href="{{ url('/agregar_al_carrito/' . $curso->ID_Cursos) }}" class="btn">Comprar</a>
-    </div>
-@endforeach
-
-
-</body>
-</html>
-
-=======
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 @extends('layouts.tienda')
 
 @section('titulo', 'Cursos')
@@ -232,4 +183,3 @@
         });
     </script>
 @endsection
->>>>>>> Stashed changes
