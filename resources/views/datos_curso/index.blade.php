@@ -1,6 +1,4 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <style>
-       
         .curso-card {
             border: 1px solid #ddd;
             border-radius: 10px;
@@ -103,6 +101,8 @@
     }
 
     </style>
+</head>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 @extends('layouts.tienda')
