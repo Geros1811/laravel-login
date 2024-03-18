@@ -1,69 +1,54 @@
- <style>
-        /* body {
-            font-family: Arial, sans-serif;
-        } */
-        .curso-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            width: 200px;
-            padding: 10px;
-            margin: 10px;
-            display: inline-block;
-            vertical-align: top;
-        }
-        .curso-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-        .curso-card h2 {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 10px;
-            border-radius: 5px;
-            background-color: #007BFF;
-            color: white;
-            text-decoration: none;
-        }
-    </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="{{ asset('css/indexCursos.css') }}">
 
- @extends('layouts.tienda')
 
- @section('titulo', 'Cursos')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@extends('layouts.tienda')
 
- @section('contenido')
-     <h1>Listado de Cursos</h1>
-     <a href="#" class="btn">Carrito</a>
+@section('titulo', 'Cursos')
 
-     <!-- Muestra el carrito -->
-     @if (!empty($carrito))
-         <h2>Carrito</h2>
-         @foreach ($carrito as $curso)
-             <div class="curso-card">
-                 <img src="data:image/jpeg;base64,{{ base64_encode($curso->ImgC) }}" alt="Imagen del curso">
-                 <h3>{{ $curso->Curso }}</h3>
-                 <p>Precio: ${{ $curso->categoria }}</p>
-             </div>
-         @endforeach
-     @else
-         <p>El carrito está vacío.</p>
-     @endif
+@section('contenido')
 
-     <!-- Muestra los cursos -->
-     @foreach ($datos_curso as $curso)
-         <div class="curso-card">
-             <img src="data:image/jpeg;base64,{{ base64_encode($curso->ImgC) }}" alt="Imagen del curso">
-             <h2>{{ $curso->Curso }}</h2>
-             <p>Duración: {{ $curso->Duracion }}</p>
-             <p>Capacitador: {{ $curso->apep_cap }} {{ $curso->apem_cap }}</p>
-             <p>Precio ${{ $curso->categoria }}</p>
-             <a href="{{ url('/agregar_al_carrito/' . $curso->ID_Cursos) }}" class="btn">Comprar</a>
-         </div>
-     @endforeach
+{{-- .agregar-al-carrito.disabled {
+    background-color: #ccc;
+    /* Cambia el color de fondo del botón desactivado */
+    cursor: not-allowed;
+    /* Cambia el cursor al pasar sobre el botón desactivado */
+} --}}
 
- @endsection
+    <div class="titulo">
+        <h1>
+            ¡Aprende, Avanza, Triunfa!
+        </h1>
+        <p>
+            Descubre Nuestros Cursos Ahora.
+        </p>
+    </div>
+
+    <main class="card-containers">
+
+        <!-- Muestra los cursos -->
+        @foreach ($courses as $curso)
+            <div class="curso-card">
+                <img src="data:image/jpeg;base64,{{ base64_encode($curso->ImgC) }}" alt="Imagen del curso">
+                <h1>{{ $curso->title }}</h1>
+                <p>Duración: {{ $curso->Duracion }}</p>
+                <h3> <b> Capacitador:</b> <br> {{ $curso->apep_cap }} {{ $curso->apem_cap }}</h3>
+                <p class="precio">Precio ${{ $curso->price }}</p>
+
+                <!-- Formulario para añadir al carrito (sin AJAX) -->
+                <form action="{{ route('add.to.cart') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="course_id" value="{{ $curso->id }}">
+                    <button type="submit" class="agregar-al-carrito" {{ isset($cart[$curso->id]) ? 'disabled' : '' }}>
+                        Añadir al carrito
+                    </button>
+                </form>
+            </div>
+        @endforeach
+    </main>
+
+    {{ $courses->links() }}
+
+
+@endsection

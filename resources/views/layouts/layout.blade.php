@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@800&family=Raleway:wght@700&display=swap"
         rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -30,6 +31,10 @@
     <title> @yield('titulo')</title>
 </head>
 
+<style>
+  
+</style>
+
 <body>
 
     <!-- EL nav  -->
@@ -37,7 +42,7 @@
         <nav class="navbar">
             <div class="logo-and-search">
                 <div class="logo">
-                    <a href="{{asset('home')}}">
+                    <a href="{{ asset('home') }}">
                         <img src="{{ asset('img/logosarlineal-dark-icono.png') }}" alt="Logo">
                     </a>
                 </div>
@@ -54,16 +59,16 @@
             <div class="menu">
                 <ul>
                     <li class="submenu">
-                        <a href="{{asset('home')}}">Inicio</a>
+                        <a href="{{ asset('home') }}">Inicio</a>
                         <div class="submenu-content">
-                            <a href="{{asset('nosotros')}}">Nosotros</a>
-                            <a href="{{asset('contacto')}}">Contacto</a>
+                            <a href="{{ asset('nosotros') }}">Nosotros</a>
+                            <a href="{{ asset('contacto') }}">Contacto</a>
                         </div>
                     </li>
                     <li class="submenu">
                         <a href="#">Cursos</a>
                         <div class="submenu-content">
-                            <a href="{{asset('obtener-cursos')}}">Tienda</a>
+                            <a href="{{ asset('obtener-cursos') }}">Tienda</a>
                         </div>
                     </li>
                 </ul>
@@ -84,7 +89,43 @@
     </header>
 
     <!-- Contenido principal -->
-    @yield('contenido')
+    <main>
+        <div class="floating-button" id="toggleCartBtn"><i class='bx bxs-cart'></i></div>
+        {{-- <button>Mostrar Carrito</button> --}}
+
+        <div class="carrito-container" id="cartContainer" style="display: none;">
+            <h2>Carrito de compras</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Curso</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Acciones</th> <!-- Nueva columna para las acciones -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (session('cart') ?? [] as $course_id => $course)
+                        <tr>
+                            <td>{{ $course['title'] }}</td>
+                            <td>${{ $course['price'] }}</td>
+                            <td>${{ $course['price'] }}</td>
+                            <td>
+                                <form action="{{ route('remove.from.cart') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="course_id" value="{{ $course_id }}">
+                                    <button type="submit" class="eliminar-del-carrito">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        @yield('contenido')
+    </main>
 
     <!-- EL footer -->
     <footer>
@@ -172,6 +213,25 @@
     </footer>
 
 
+    <script>
+        $(document).ready(function() {
+            // Muestra u oculta el carrito al hacer clic en el botón
+            $('#toggleCartBtn').on('click', function() {
+                $('#cartContainer').toggle();
+            });
+        });
+
+        // Boton flotante
+        // $(document).ready(function() {
+        //     $(window).scroll(function() {
+        //         if ($(this).scrollTop() > 100) {
+        //             $('.floating-button').css('bottom', '50px');
+        //         } else {
+        //             $('.floating-button').css('bottom', '20px');
+        //         }
+        //     });
+        // });
+    </script>
     <script src="{{ asset('js/acciones.js') }}"></script>
 
 
