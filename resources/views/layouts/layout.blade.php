@@ -75,23 +75,23 @@
 
 
                 <div class="button-container">
-                    {{-- @if (!Auth::check()) --}}
+                    @if (!Auth::check())
                         <!-- Botón para registrarse -->
-                        {{-- <button class="button registrarme" onclick="window.location='login'">
+                        <button class="button registrarme" onclick="window.location='login'">
                             Registrarme
-                        </button> --}}
-                    {{-- @else --}}
+                        </button>
+                    @else
                         <!-- Botón para acceder al perfil del usuario -->
                         <button class="acceder" onclick="">
                             <span class="material-icons iconn">account_circle</span>
-                            <span class="button-text"> Ricardo Contreras Contreras {{--{{ Auth::user()->name ?? '' }}--}}</span>
+                            <span class="button-text"> {{ Auth::user()->name ?? '' }}</span>
                         </button>
                         <!-- Botón para cerrar sesión -->
                         <form action="{{ route('logout') }}" method="post">
-                            {{-- @csrf --}}
+                            @csrf
                             <button type="submit" class="button cerrar-sesion">Cerrar sesión</button>
                         </form>
-                    {{-- @endif --}}
+                    @endif
                 </div>
             </div>
         </nav>
