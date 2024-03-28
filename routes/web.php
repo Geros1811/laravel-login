@@ -81,6 +81,7 @@ Route::get('/obtener-cursos', [DatosCursoController::class, 'obtenerCursos']);
 Route::post('/add-to-cart', [CarritoController::class, 'addToCart'])->name('add.to.cart');
 Route::post('/remove-from-cart', [CarritoController::class, 'removeFromCart'])->name('remove.from.cart');
 Route::get('/cursos', [CarritoController::class, 'index'])->name('cursos.index');
+Route::post('/checkout', [CarritoController::class, 'checkout'])->name('checkout');
 
 
 Route::middleware('auth')->group(function () {
