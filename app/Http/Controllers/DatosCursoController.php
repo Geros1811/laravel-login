@@ -13,13 +13,11 @@ class DatosCursoController extends Controller
     
         return view('datos_curso.index', compact('courses', 'carrito'));
     }
-    
-    public function success(Request $request)
-{
-    // Registra un mensaje de éxito en la consola
-    Log::info('Pago completado con éxito.');
 
-    // Aquí puedes redirigir a una página de "gracias por su compra" o hacer cualquier otra acción necesaria
+    public function detalle($id)
+{
+    $curso = DatosCurso::findOrFail($id);
+    return view('datos_curso.detalle', compact('curso'));
 }
 
 }

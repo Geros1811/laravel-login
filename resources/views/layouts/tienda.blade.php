@@ -134,57 +134,10 @@
                     </tr>
                 </tbody>
             </table>
-            
-            <form action="{{ route('checkout') }}" method="post" id="payment-form">
-                @csrf
-                <div class="form-row">
-                    <label for="card-element">
-                        Ingresa los detalles de tu tarjeta
-                    </label>
-                    <div id="card-element">
-                        <!-- Un elemento div para el contenedor del formulario de Stripe -->
-                    </div>
-                    <!-- Used to display form errors -->
-                    <div id="card-errors" role="alert"></div>
-                </div>
-                <button type="submit">Pagar</button>
-            </form>
         </div>
     
         @yield('contenido')
     </main>
-    
-    <script src="https://js.stripe.com/v3/"></script>
-    <script>
-        var stripe = Stripe('{{ env('STRIPE_KEY') }}');
-        var elements = stripe.elements();
-        var cardElement = elements.create('card');
-        cardElement.mount('#card-element');
-    
-        var form = document.getElementById('payment-form');
-    
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-    
-            stripe.createToken(cardElement).then(function(result) {
-                if (result.error) {
-                    // Informar al usuario sobre errores en la tarjeta
-                    var errorElement = document.getElementById('card-errors');
-                    errorElement.textContent = result.error.message;
-                } else {
-                    // Insertar el token de pago en el formulario para enviarlo al servidor
-                    var hiddenInput = document.createElement('input');
-                    hiddenInput.setAttribute('type', 'hidden');
-                    hiddenInput.setAttribute('name', 'stripeToken');
-                    hiddenInput.setAttribute('value', result.token.id);
-                    form.appendChild(hiddenInput);
-    
-                    // Enviar el formulario
-                    form.submit();
-                }
-            });
-        });
-    </script>
 
     <!-- EL footer -->
     <footer>

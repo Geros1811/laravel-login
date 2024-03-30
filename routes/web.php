@@ -5,7 +5,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DatosCursoController;
 use App\Http\Controllers\CarritoController;
-
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,11 +78,16 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/obtener-cursos', [DatosCursoController::class, 'obtenerCursos']);
-
 Route::post('/add-to-cart', [CarritoController::class, 'addToCart'])->name('add.to.cart');
 Route::post('/remove-from-cart', [CarritoController::class, 'removeFromCart'])->name('remove.from.cart');
+Route::get('/curso/{id}', [DatosCursoController::class, 'detalle'])->name('curso.detalle');
+
+Route::post('/checkout', [CheckoutController::class, 'createCheckoutSession'])->name('checkout');
+Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
+
 Route::get('/cursos', [CarritoController::class, 'index'])->name('cursos.index');
-Route::post('/checkout', [CarritoController::class, 'checkout'])->name('checkout');
+
 
 
 
