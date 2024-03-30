@@ -14,10 +14,3 @@ class DatosCurso extends Model
 
     // Aquí puedes definir otras propiedades y métodos según tus necesidades
 }
-
-class Curso extends Model
-{
-    use HasFactory;
-
-    // No es necesario especificar $table ni $primaryKey si sigues las convenciones de Laravel
-}

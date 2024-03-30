@@ -84,6 +84,9 @@ Route::get('/cursos', [CarritoController::class, 'index'])->name('cursos.index')
 Route::post('/checkout', [CarritoController::class, 'checkout'])->name('checkout');
 
 
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
