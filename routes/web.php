@@ -83,6 +83,8 @@ Route::post('/remove-from-cart', [CarritoController::class, 'removeFromCart'])->
 Route::get('/curso/{id}', [DatosCursoController::class, 'detalle'])->name('curso.detalle');
 
 Route::post('/checkout', [CheckoutController::class, 'createCheckoutSession'])->name('checkout');
+Route::post('/procesar-transaccion', [CheckoutController::class, 'processTransaction'])->name('procesar.transaccion');
+
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 

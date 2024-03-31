@@ -87,5 +87,21 @@
             <button type="submit" class="buy-button">Comprar</button>
         </form>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Evitar que el formulario se envíe automáticamente
+    
+                // Obtener el valor del campo course_id
+                var courseId = document.querySelector('input[name="course_id"]').value;
+    
+                // Imprimir el valor en la consola del navegador
+                console.log('Course ID:', courseId);
+    
+                // Enviar el formulario manualmente
+                this.submit();
+            });
+        });
+    </script>
 </body>
 </html>
