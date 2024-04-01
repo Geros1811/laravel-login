@@ -85,6 +85,9 @@ Route::get('/curso/{id}', [DatosCursoController::class, 'detalle'])->name('curso
 Route::post('/checkout', [CheckoutController::class, 'createCheckoutSession'])->name('checkout');
 Route::post('/procesar-transaccion', [CheckoutController::class, 'processTransaction'])->name('procesar.transaccion');
 
+Route::get('/formulario-pago', 'CheckoutController@formularioPago')->name('formulario_pago');
+
+
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 

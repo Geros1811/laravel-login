@@ -15,9 +15,14 @@ class CheckoutController extends Controller
 
     public function showCheckoutForm()
     {
-        // Carga la vista 'checkout' que has creado en lugar de la página de Stripe
-        return view('checkout');
+        // Obtener el ID de la sesión de Stripe (transaction_id) si está disponible
+        $transaction_id = Auth::user()->transaction ? Auth::user()->transaction->transaction_id : null;
+    
+        // Pasar la transaction_id a la vista
+        return view('checkout', compact('transaction_id'));
     }
+      
+    
 
     public function createCheckoutSession(Request $request)
     {
@@ -32,29 +37,30 @@ class CheckoutController extends Controller
         $courseId = $request->input('course_id');
         $course = DatosCurso::findOrFail($courseId);
     
+       
         // Crear una sesión de pago con Stripe
-        $session = Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [
-                [
-                    'price_data' => [
-                        'currency' => 'usd',
-                        'product_data' => [
-                            'name' => $course->title,
-                        ],
-                        'unit_amount' => $course->price * 100, // Precio en centavos
-                    ],
-                    'quantity' => 1,
+$session = Session::create([
+    'payment_method_types' => ['card'],
+    'line_items' => [
+        [
+            'price_data' => [
+                'currency' => 'usd',
+                'product_data' => [
+                    'name' => $course->title,
                 ],
+                'unit_amount' => $course->price * 100, // Precio en centavos
             ],
-            'mode' => 'payment',
-            'success_url' => route('payment.success'), // URL de éxito del pago
-            'cancel_url' => route('payment.cancel'),   // URL de cancelación del pago
-            'customer_email' => $email,                // Correo electrónico del cliente
-            'metadata' => [
-                'course_id' => $courseId, // Agregar la ID del curso como metadato
-            ],
-        ]);
+            'quantity' => 1,
+        ],
+    ],
+    'mode' => 'payment',
+    'success_url' => route('payment.success'), // URL de éxito del pago
+    'cancel_url' => route('payment.cancel'),   // URL de cancelación del pago
+    'customer_email' => $email,                // Correo electrónico del cliente
+    'metadata' => [
+        'course_id' => $courseId, // Agregar la ID del curso como metadato
+    ],
+]);
     
         // Guardar el ID de la sesión de Stripe en la base de datos como 'transaction_id'
         Transaction::create([
@@ -69,20 +75,32 @@ class CheckoutController extends Controller
     }
 
     public function processTransaction(Request $request)
-    {
+{
+    try {
         // Lógica para procesar la transacción una vez que se complete el pago
-        // Por ejemplo, puedes guardar los detalles de la transacción en la base de datos
-
         Transaction::create([
             'course_id' => $request->course_id,
-            'transaction_id' => $request->transaction_id, // Asegúrate de tener esta información disponible
-            'status' => 'completed', // O cualquier estado que corresponda
-            'user_id' => Auth::id(), // Obtener el ID del usuario autenticado
+            'transaction_id' => $request->transaction_id,
+            'status' => 'completed',
+            'user_id' => Auth::id(),
         ]);
 
-        // Redirigir al usuario a una página de confirmación o mostrar un mensaje de éxito
-        return view('payment.success')->with('message', 'El pago se ha procesado exitosamente.');
+        // Imprimir los datos en la consola
+        \Log::info('Datos guardados en la base de datos:', [
+            'course_id' => $request->course_id,
+            'transaction_id' => $request->transaction_id,
+            'user_id' => Auth::id(),
+        ]);
+
+        // Redirigir al cliente a la página de Stripe
+        return response()->json(['success' => true]);
+    } catch (\Exception $e) {
+        // Manejar la excepción
+        \Log::error('Error al procesar la transacción: ' . $e->getMessage());
+
+        return response()->json(['error' => 'Error al procesar la transacción: ' . $e->getMessage()], 500);
     }
+}
 }
 
 

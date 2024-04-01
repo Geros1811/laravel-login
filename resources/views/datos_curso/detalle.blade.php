@@ -81,12 +81,13 @@
         <!-- Formulario de compra con los datos del cliente -->
         <form action="{{ route('checkout') }}" method="POST">
             @csrf
+            <!-- Campo oculto para el course_id -->
             <input type="hidden" name="course_id" value="{{ $curso->id }}">
+            <!-- Otros campos del formulario (nombre, email, etc.) -->
             <input type="hidden" name="name" value="{{ Auth::user()->name }}">
             <input type="hidden" name="email" value="{{ Auth::user()->email }}">
             <button type="submit" class="buy-button">Comprar</button>
         </form>
-    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('form').addEventListener('submit', function(event) {
