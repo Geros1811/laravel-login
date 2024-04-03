@@ -33,7 +33,7 @@ class CheckoutController extends Controller
             'line_items' => [
                 [
                     'price_data' => [
-                        'currency' => 'usd',
+                        'currency' => 'mxn',
                         'product_data' => [
                             'name' => $course->title,
                         ],
