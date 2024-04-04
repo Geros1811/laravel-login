@@ -64,6 +64,13 @@
         .buy-button:hover {
             background-color: #0056b3;
         }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -75,7 +82,7 @@
         <div class="course-info">
             <p><b>Descripción:</b> {{ $curso->description }}</p>
             <p><b>Duración:</b> {{ $curso->Duracion }}</p>
-            <p><b>Precio:</b> ${{ $curso->price }}</p>
+            <p class="price"><b>Precio:</b> ${{ $curso->price }} <span style="color: #888;">(Membresía)</span></p>
         </div>
         
         <!-- Formulario de compra con los datos del cliente -->

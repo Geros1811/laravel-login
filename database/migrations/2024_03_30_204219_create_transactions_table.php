@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('course_id');
+            $table->BigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
             $table->string('transaction_id');
             $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
