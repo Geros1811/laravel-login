@@ -1,0 +1,234 @@
+.icon-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-card {
+    width: 200px;
+    margin: 55px;
+    padding: 15px;
+    text-align: center;
+}
+
+.icon-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    /* cursor: pointer; */
+}
+
+.icon-card i {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.oculto {
+    display: none;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.ver-mas {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    border: none;
+}
+
+
+/* Banner membresia */
+
+.banners {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.left-content {
+    display: flex;
+}
+
+.dual-images-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    gap: 5px;
+}
+
+.izquierdaAbajo1 {
+    margin-top: -160px;
+}
+
+.izquierdaAbajo2 {
+    margin: auto;
+    height: 50px;
+}
+
+.izquierdaArriba1 {
+    width: 30%;
+    height: 148px;
+    margin-left: 164px;
+}
+
+.izquierdaArriba2 {
+    margin-bottom: 20px;
+}
+
+
+
+
+.right-content {
+    margin-top: -210px;
+    right: 8%;
+    position: relative;
+}
+
+.right-content h1 {
+    font-size: 80px;
+}
+
+.right-content p {
+    font-size: 20px;
+}
+
+.info-buttons {
+    position: absolute;
+    /* bottom: 26px;*/
+    right: 30%;
+    display: inline-block;
+    padding: 10px 20px;
+    background: #275D90;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.info-buttons:hover {
+    background: #000000;
+    color: #fff;
+    transform: scale(0.95);
+}
+
+.separador {
+    margin-top: 25px;
+    background-color: #275D90;
+    padding: 5px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.separadorzx {
+    padding: 5px;
+    text-align: center;
+    color: #000000;
+}
+
+
+
+/* cusos gratis */
+
+.card-containers {
+    margin-top: 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    /* padding: 0 180px; */
+    position: relative;
+    z-index: 3;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 200px;
+    padding: 50px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+
+
+.card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1em;
+    color: #555;
+}
+
+.size {
+    font-size: 26px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    color: #2f3f50;
+}
+
+
+/* ... Botones ... */
+
+
+.buttonM {
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    /* text-transform: uppercase; */
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7em 2em;
+    border: 3px solid #275D90;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: #275D90;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.buttonM:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: '';
+    background-color: #275D90;
+    z-index: -1;
+}
+
+.buttonM:hover,
+button:focus {
+    color: white;
+}
+
+.buttonM:hover:before,
+button:focus:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+}
+
+.buttonM:active {
+    transform: scale(0.9);
+}

@@ -1,0 +1,435 @@
+.buttonM {
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    /* text-transform: uppercase; */
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7em 2em;
+    border: 3px solid #275D90;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: #275D90;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.buttonM:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: '';
+    background-color: #275D90;
+    z-index: -1;
+}
+
+.buttonM:hover,
+button:focus {
+    color: white;
+}
+
+.buttonM:hover:before,
+button:focus:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+}
+
+.buttonM:active {
+    transform: scale(0.9);
+}
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: 15%;
+    flex-grow: 1;
+}
+.menu-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.menu-lista.activo {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+.menu-lista li {
+
+    margin-right: 75px;
+}
+
+.icono-menu {
+    color: #000000;
+    font-size: 1.5em;
+    display: none;
+    cursor: pointer;
+}
+
+.menu-lista a {
+    text-decoration: none;
+    color: #275D90;
+    /* font-weight: bold; */
+    line-height: 27.2px;
+}
+
+
+.card-containers {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    /* padding: 0 180px; */
+    position: relative;
+    z-index: 3;
+    flex-wrap: wrap;
+    margin: 20px 6% 0px 6%;
+}
+
+
+
+.curso-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 250px;
+    padding: 20px;
+    margin: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.curso-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    /* cursor: pointer; */
+}
+
+.curso-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.curso-card h1 {
+    font-size: 1rem;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.curso-card h3 {
+    font-weight: 500;
+}
+
+.curso-card b {
+    font-size: 1.3rem;
+}
+
+.precio {
+    color: #275d90;
+    font-weight: 700;
+}
+
+.curso-card p {
+    font-size: 0.9rem;
+}
+
+
+
+.btsn {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7rem 2rem;
+    border: 3px solid #275D90;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: #275D90;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+    margin: 5% 20%;
+}
+
+.btsn:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: '';
+    background-color: #275D90;
+    z-index: -1;
+}
+
+.btsn:hover,
+btsn:focus {
+    color: white;
+}
+
+.btsn:hover:before,
+btsn:focus:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+}
+
+.btsn:active {
+    transform: scale(0.9);
+}
+
+/* La barra de navegacion */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 10px;
+    justify-content: center;
+}
+
+.pagination li {
+    /* margin: 0 5px; */
+}
+
+.pagination a {
+    color: #007BFF;
+    text-decoration: none;
+    padding: 5px 10px;
+    /* border: 1px solid #007BFF; */
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.pagination a:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* .pagination  .active {
+
+} */
+
+.pagination span {
+    padding: 5px 10px;
+    /* background-color: #007BFF; */
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    border: 1px solid #007BFF;
+}
+
+.pagination li:first-child span {
+    border: 1px solid #ffffff;
+}
+
+.pagination li:last-child span {
+    border: 1px solid #ffffff;
+}
+
+/* .pagination span {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+} */
+
+/* 
+li span .page-item.disabled {
+    background-color: #007BFF;
+    color: white;
+    border-color: #007BFF;
+} */
+
+/* 
+li span .page-item.active:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+} */
+
+/* ///////////////////////////// Titulo /////////////////////////// */
+.titulo {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    z-index: 4;
+}
+
+.titulo h1 {
+    font-size: 50px;
+    text-align: center;
+    color: #275D90;
+    font-weight: 800;
+    font-family: 'Raleway', sans-serif;
+}
+
+.titulo p {
+    margin-top: auto;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Boton */
+
+.floating-button {
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: #275d90;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    font-size: 1.5em;
+}
+
+.floating-button:hover {
+    background-color: #0056b3;
+}
+
+
+#toggleCartBtn {
+    /* Eliminar background-color para evitar transparencia */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#cartContainer {
+    position: fixed;
+    /* top: 450px; */
+    bottom: 0px;
+    width: 60%;
+    /* height: 80%; */
+    right: 20px;
+    display: none;
+    z-index: 999;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    /* Añadir un color de fondo blanco */
+}
+#card-containers h2 {
+    margin: auto;
+}
+.carrito-container {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: white;
+    /* Añadir un color de fondo blanco */
+}
+
+.carrito-btn-container {
+    text-align: right;
+    margin-right: 20px;
+}
+
+/* Para pantallas pequeñas (teléfonos, menor de 768px) */
+@media (max-width: 767px) {
+    .logo-and-search {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .search {
+        margin-top: 5%;
+        margin-left: 1%;
+    }
+
+    .search input[type="text"] {
+        width: 280px;
+    }
+
+    .menu {
+        margin-left: 0px;
+
+    }
+
+    .menu-lista {
+        display: none;
+    }
+
+    .icono-menu {
+        display: block;
+        margin-right: 20px;
+    }
+
+    .header-fixed .menu {
+        margin-left: -340px;
+        justify-content: space-evenly;
+    }
+
+    .acceder {
+        margin-right: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .registrarme {
+        margin-right: -5px;
+        letter-spacing: normal;
+        background-color: #275D90;
+        color: #ffffff;
+
+    }
+
+    .button {
+        padding: 0.7em 1em;
+    }
+
+    .iconn {
+        margin-bottom: 2px;
+        font-size: 35px;
+    }
+}
+
+/* Para pantallas medianas (tabletas, entre 768px y 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Estilos CSS para pantallas medianas */
+}
+
+/* Para pantallas grandes (escritorio, mayor o igual a 992px) */
+@media (min-width: 992px) {
+    /* Estilos CSS para pantallas grandes */
+}
+
+/* Para pantallas extra grandes (mayor o igual a 1200px) */
+@media (min-width: 1200px) {
+    /* Estilos CSS para pantallas extra grandes */
+}
