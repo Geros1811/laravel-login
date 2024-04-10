@@ -7,6 +7,7 @@ use App\Http\Controllers\DatosCursoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,16 @@ Route::controller(cursosController::class)->group(function () {
     Route::get('cursosMembresia/Administracion', 'Administracion')->name('Administracion');
     Route::get('cursosMembresia/inocuidad', 'inocuidad')->name('Inocuidad');
 });
+
+// Para el dashboard Admin
+Route::get('/productos', [ProductController::class, 'productos'])->name('productos.productos');
+Route::get('/productos/crear', [ProductController::class, 'create'])->name('productos.crear');
+Route::post('/productos', [ProductController::class, 'store'])->name('productos.store');
+Route::get('/productos/{product}/editar', [ProductController::class, 'editar'])->name('productos.editar');
+Route::put('/productos/{product}', [ProductController::class, 'update'])->name('productos.update');
+Route::delete('/productos/{product}', [ProductController::class, 'destroy'])->name('productos.destroy');
+
+
 
 // Ruta pra el login y registro
 route::get('/login&Registro', function () {
