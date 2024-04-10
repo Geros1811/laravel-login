@@ -71,45 +71,66 @@
             color: #007bff;
             margin-bottom: 15px;
         }
+
+        .curso-activo {
+    background-color: #dff0d8; /* Color de fondo verde */
+    border: 1px solid #c3e6cb; /* Borde verde claro */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="course-details">
-            <h1>{{ $curso->title }}</h1>
-            <img src="data:image/jpeg;base64,{{ base64_encode($curso->ImgC) }}" alt="Imagen del curso">
-        </div>
-        <div class="course-info">
-            <p><b>Descripción:</b> {{ $curso->description }}</p>
-            <p><b>Duración:</b> {{ $curso->Duracion }}</p>
-            <p class="price"><b>Precio:</b> ${{ $curso->price }} <span style="color: #888;">(Membresía)</span></p>
-        </div>
+
         
-        <!-- Formulario de compra con los datos del cliente -->
-        <form action="{{ route('checkout') }}" method="POST">
-            @csrf
-            <!-- Campo oculto para el course_id -->
-            <input type="hidden" name="course_id" value="{{ $curso->id }}">
-            <!-- Otros campos del formulario (nombre, email, etc.) -->
-            <input type="hidden" name="name" value="{{ Auth::user()->name }}">
-            <input type="hidden" name="email" value="{{ Auth::user()->email }}">
-            <button type="submit" class="buy-button">Comprar</button>
-        </form>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('form').addEventListener('submit', function(event) {
-                event.preventDefault(); // Evitar que el formulario se envíe automáticamente
-    
-                // Obtener el valor del campo course_id
-                var courseId = document.querySelector('input[name="course_id"]').value;
-    
-                // Imprimir el valor en la consola del navegador
-                console.log('Course ID:', courseId);
-    
-                // Enviar el formulario manualmente
-                this.submit();
-            });
+<!-- Detalles del curso -->
+<div class="course-details">
+    <h1>{{ $curso->title }}</h1>
+    <img src="data:image/jpeg;base64,{{ base64_encode($curso->ImgC) }}" alt="Imagen del curso">
+</div>
+
+<!-- Información del curso -->
+<div class="course-info">
+    <p><b>Descripción:</b> {{ $curso->description }}</p>
+    <p><b>Duración:</b> {{ $curso->Duracion }}</p>
+    <p><b>Precio:</b> ${{ $curso->price }}</p>
+
+<!-- Verificar si el curso está activo -->
+@if(in_array($curso->id, $cursosActivos))
+    <div class="curso-activo">
+        <p><strong>En curso</strong></p> <!-- Ajustar $tiempoRestante con el tiempo restante de la membresía -->
+    </div>
+@else
+    <!-- Formulario de compra con los datos del cliente -->
+    <form action="{{ route('checkout') }}" method="POST">
+        @csrf
+        <!-- Campo oculto para el course_id -->
+        <input type="hidden" name="course_id" value="{{ $curso->id }}">
+        <!-- Otros campos del formulario (nombre, email, etc.) -->
+        <input type="hidden" name="name" value="{{ Auth::user()->name }}">
+        <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+        <button type="submit" class="buy-button">Comprar</button>
+    </form>
+@endif
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar que el formulario se envíe automáticamente
+
+            // Obtener el valor del campo course_id
+            var courseId = document.querySelector('input[name="course_id"]').value;
+
+            // Imprimir el valor en la consola del navegador
+            console.log('Course ID:', courseId);
+
+            // Enviar el formulario manualmente
+            this.submit();
         });
-    </script>
+    });
+</script>
 </body>
 </html>

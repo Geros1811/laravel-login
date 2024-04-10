@@ -27,7 +27,6 @@
 
     <main class="card-containers">
 
-        <!-- Muestra los cursos -->
         @foreach ($courses as $curso)
         <a href="{{ route('curso.detalle', ['id' => $curso->id]) }}" class="curso-link">
             <div class="curso-card">
@@ -36,18 +35,25 @@
                 <p>Duración: {{ $curso->Duracion }}</p>
                 <h3><b>Capacitador:</b><br>{{ $curso->apep_cap }} {{ $curso->apem_cap }}</h3>
                 <p class="precio">Precio ${{ $curso->price }}</p>
+                @if(in_array($curso->id, $carrito)) <!-- Verificar si el curso está en el carrito -->
+                    <p>Ya tienes este curso en tu carrito.</p>
+                @endif
+                @if(in_array($curso->id, $cursosActivos)) <!-- Verificar si el curso está activo -->
+                    <p>Ya cuentas con este curso activo.</p>
+                @else
+                    <!-- Formulario para añadir al carrito (sin AJAX) -->
+                    <form class="addToCartForm" action="{{ route('add.to.cart') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="course_id" value="{{ $curso->id }}">
+                        <button type="submit" class="agregar-al-carrito" {{ isset($cart[$curso->id]) ? 'disabled' : '' }}>
+                            Añadir al carrito
+                        </button>
+                    </form>
+                @endif
             </div>
-             <!-- Formulario para añadir al carrito (sin AJAX) -->
-             <form class="addToCartForm"  action="{{ route('add.to.cart') }}" method="post">
-                @csrf
-                <input type="hidden" name="course_id" value="{{ $curso->id }}">
-                <button type="submit" class="agregar-al-carrito" {{ isset($cart[$curso->id]) ? 'disabled' : '' }}>
-                    Añadir al carrito
-                </button>
-            </form>
-        </div>
-    </a>
+        </a>
     @endforeach
+    
         
     
            

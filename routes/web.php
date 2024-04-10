@@ -7,6 +7,7 @@ use App\Http\Controllers\DatosCursoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CuponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,8 @@ Route::post('/checkout', [CheckoutController::class, 'createCheckoutSession'])->
 Route::post('/procesar-transaccion', [CheckoutController::class, 'processTransaction'])->name('procesar.transaccion');
 Route::post('/checkout/success', [CheckoutController::class, 'handlePaymentSuccess'])->name('checkout.success');
 
+Route::get('/generar-cupon', [CuponController::class, 'showGenerateForm'])->name('cupon.generate');
+Route::post('/generar-cupon', [CuponController::class, 'generarCupon'])->name('cupon.generar');
 
 
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');

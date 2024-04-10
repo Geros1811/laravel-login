@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 use App\Models\DatosCurso;
+use App\Models\Cupon;
 
 class CheckoutController extends Controller
 {

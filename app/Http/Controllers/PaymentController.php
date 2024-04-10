@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
+    
     public function success(Request $request)
     {
         // Obtener la transacción pendiente para el usuario y el curso
